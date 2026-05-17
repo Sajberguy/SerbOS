@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="SerbOS/SerbOS.vcxproj" Id="b5cb6a7b-817d-425a-949e-c9ed4defd786" />
+</Solution>
