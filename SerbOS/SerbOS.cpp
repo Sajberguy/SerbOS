@@ -1,18 +1,34 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include <cmath>
 using namespace std;
 int main() {
-	string jed, dva, tri, cet;
+	string jed, tri, cet,pass,input;
 	double a, b, c, d;
 	char op;
-	cout << "Dobrodosli!" << endl << "Upisite vase Ime:" << endl;
-	cin >> dva;
-	cout << "Upisite dati kod za ulazak u OS:" << endl;
-	cin >> tri;
-	if (tri == "1389") {
-		cout << "Dobrodosli u SerbOS, ovo su najvaznije komande:" << endl << "AllApps(prikazuje listu svih aplikacija)" << endl << "Kalkulator(prikazuje osnovni kalkulator)" << endl << "KalkulatorN(prikazuje napredni kalkulator)" << endl << "Novo(prikazuje vijesti i novosti)" << endl << "Info(prikazuje informacije o sistemu)" << endl << "Quit(zatvaranje OS)" << endl;
-
+	ifstream checkFile("user.dat");
+	if (!checkFile || !(checkFile >> pass)) {
+		cout << "Lozinka nije pronadjena, unesite novu:" << endl;
+		cin >> pass;
+		ofstream file("user.dat");
+		file << pass;
+		file.close();
+		cout << "Lozinka stvorena!" << endl;
+		cout << "Dobrodosli u SerbOS, ovo su najvaznije komande:" << endl << "AllApps(prikazuje listu svih aplikacija)" << endl << "Kalkulator(prikazuje osnovni kalkulator)" << endl << "KalkulatorN(prikazuje napredni kalkulator)" << endl;
+	}
+	else {
+		checkFile.close();
+		cout << "Unesite vasu lozinku:" << endl;
+		cin >> input;
+		if (input == pass) {
+			cout << "Dobrodosli u SerbOS, ovo su najvaznije komande:" << endl << "AllApps(prikazuje listu svih aplikacija)" << endl << "Kalkulator(prikazuje osnovni kalkulator)" << endl << "KalkulatorN(prikazuje napredni kalkulator)" << endl;
+		}
+		else {
+			cout << "Pogresna lozinka!";
+			return 0;
+		}
+	}
 		bool running = true;
 		while (running) {
 			cin >> cet;
@@ -46,7 +62,7 @@ int main() {
 				cout << "**Novosti**" << endl << "*Vrijeme*" << endl << "Kod mene trenutno pada kisa." << endl << "*Skola se uskoro zavrsava*" << endl << "Uskoro pocinje ljetnji raspust za ucenike osnovnih i srednjih skola." << endl;
 			}
 			else if (cet == "Info") {
-				cout << "Informacije o sistemu:" << endl << "Vase ime:" << dva << endl << "Verzija sistema:0.1" << endl << "Datum pravljenja sistema:17/5/2026" << endl << "Datum pravljenja verzije:17/5/2026" << endl << "Sistem napravio:SajberGuy" << endl;
+				cout << "Informacije o sistemu:" << endl << "Verzija sistema:0.1" << endl << "Datum pravljenja sistema:17/5/2026" << endl << "Datum pravljenja verzije:17/5/2026" << endl << "Sistem napravio:SajberGuy" << endl;
 			}
 			else if (cet == "Quit") {
 				running = false;
@@ -55,8 +71,3 @@ int main() {
 			}
 
 		}
-	else {
-		cout << "Pogresan kod" << endl;
-		return 0;
-	}
-}
